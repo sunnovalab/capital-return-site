@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seja um Correspondente Capital Return | Gere Renda com Crédito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C92822;
+    --red-dark:#a71f1a;
+    --navy:#0F2E4A;
+    --blue-mid:#2E5B88;
+    --blue-grey:#93A5B7;
+    --bg:#FFFFFF;
+    --bg-alt:#F5F7FA;
+    --line: rgba(15,46,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter',sans-serif;color:var(--navy);background:var(--bg);-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.eyebrow{font-family:'Montserrat',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  /* -------- Minimal header: no nav, no exits from the funnel -------- */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  }
+  .headbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1140px;margin:0 auto;
+  }
+  .brand img{height:42px;}
+  .cta-btn{
+    background:var(--red);color:#fff;padding:11px 22px;border-radius:8px;font-weight:700;font-size:14.5px;
+    box-shadow:0 6px 16px rgba(201,40,34,0.25);white-space:nowrap;
+  }
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:1.4px;
+    text-transform:uppercase;color:var(--red);border:1px solid rgba(201,40,34,0.25);
+    background:rgba(201,40,34,0.06);padding:7px 16px;border-radius:30px;margin-bottom:20px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);}
+  .eyebrow.on-dark{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
+
+  /* -------- Hero -------- */
+  .hero{padding:70px 0 60px;background:linear-gradient(180deg,#ffffff 0%, #f8fafb 100%);}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;}
+  h1{font-size:42px;line-height:1.15;font-weight:800;margin:0 0 20px;letter-spacing:-.5px;}
+  h1 span{color:var(--red);}
+  .hero p.lead{font-size:17px;line-height:1.65;color:var(--blue-mid);max-width:520px;margin:0 0 30px;}
+  .btn-primary{
+    background:var(--red);color:#fff;padding:16px 30px;border-radius:9px;font-weight:700;font-size:16px;
+    box-shadow:0 8px 20px rgba(201,40,34,0.28);display:inline-flex;align-items:center;gap:10px;
+  }
+  .hero-badges{display:flex;gap:24px;margin-top:34px;flex-wrap:wrap;}
+  .hero-badge{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--blue-mid);}
+  .hero-badge .ico{color:var(--red);font-size:18px;}
+  .hero-visual .photo-card{
+    position:relative;border-radius:20px;overflow:hidden;height:400px;
+    box-shadow:0 30px 60px rgba(15,46,74,0.25);
+  }
+  .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center 25%;}
+  .hero-visual .photo-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(15,46,74,0) 55%, rgba(15,46,74,0.82) 100%);
+  }
+  .hero-visual .cap{
+    position:absolute;left:22px;right:22px;bottom:20px;z-index:2;color:#fff;
+  }
+  .hero-visual .cap .l{font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue-grey);}
+  .hero-visual .cap .t{font-family:'Montserrat',sans-serif;font-weight:700;font-size:18px;margin-top:4px;}
+
+  /* -------- Trust strip -------- */
+  .strip{padding:34px 0;background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .strip p{text-align:center;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue-mid);margin:0 0 20px;}
+  .bank-row{display:flex;justify-content:center;gap:44px;flex-wrap:wrap;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--navy);opacity:.8;}
+
+  section{padding:84px 0;}
+  .section-head{max-width:620px;margin:0 auto 50px;text-align:center;}
+  .section-head h2{font-size:31px;font-weight:800;margin:14px 0 14px;letter-spacing:-.3px;}
+  .section-head p{font-size:15.5px;color:var(--blue-mid);line-height:1.6;}
+
+  /* -------- Steps -------- */
+  .steps{background:var(--bg);}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .step-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:30px 26px;position:relative;}
+  .step-card .num{
+    font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#fff;
+    background:var(--red);width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .step-card h3{font-size:17.5px;margin:0 0 8px;font-weight:700;}
+  .step-card p{font-size:14px;color:var(--blue-mid);line-height:1.55;margin:0;}
+
+  /* -------- Benefits -------- */
+  .benefits{background:var(--bg-alt);}
+  .benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .benefit-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 20px;text-align:center;}
+  .benefit-card .ico{font-size:26px;margin-bottom:12px;}
+  .benefit-card h3{font-size:15px;margin:0 0 6px;font-weight:700;}
+  .benefit-card p{font-size:12.8px;color:var(--blue-mid);line-height:1.5;margin:0;}
+
+  /* -------- Platform showcase -------- */
+  .platform{background:var(--navy);color:#fff;overflow:hidden;}
+  .platform .section-head p{color:var(--blue-grey);}
+  .platform .section-head h2{color:#fff;}
+  .platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .platform-copy p{font-size:15px;color:var(--blue-grey);line-height:1.7;margin-bottom:14px;}
+  .platform-perks{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:12px;}
+  .platform-perks li{display:flex;gap:10px;font-size:14.3px;color:#e7edf2;}
+  .platform-perks li::before{content:"✓";color:var(--red);font-weight:800;}
+  .platform-img{border-radius:16px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.35);}
+
+  /* -------- Team proof -------- */
+  .team{background:var(--bg);}
+  .team-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;}
+  .team-grid .big img, .team-grid .small img{border-radius:16px;width:100%;height:100%;object-fit:cover;}
+  .team-grid .big{border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(15,46,74,0.15);}
+  .team-grid .small{border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(15,46,74,0.15);}
+
+  /* -------- Form -------- */
+  .form-section{background:var(--bg-alt);}
+  .form-shell{
+    max-width:720px;margin:0 auto;background:#fff;border-radius:18px;padding:40px;
+    box-shadow:0 24px 50px rgba(15,46,74,0.12);
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{margin-bottom:16px;}
+  .field.full{grid-column:1/-1;}
+  label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;}
+  input,select{
+    width:100%;padding:11px 13px;border:1.5px solid #dfe6ec;border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);background:#fbfcfd;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--blue-mid);}
+  .lgpd{display:flex;gap:9px;font-size:12.3px;color:var(--blue-mid);line-height:1.5;align-items:flex-start;margin:10px 0 18px;}
+  .lgpd input{width:16px;height:16px;margin-top:2px;flex-shrink:0;}
+  .submit-btn{
+    width:100%;background:var(--red);color:#fff;border:none;padding:16px;border-radius:9px;
+    font-weight:700;font-size:16px;cursor:pointer;
+  }
+
+  /* -------- Minimal footer: legal + contact only, no home links -------- */
+  footer{background:var(--navy);color:#fff;padding:50px 0 26px;}
+  .foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .foot-brand img{height:34px;filter:brightness(0) invert(1);}
+  footer .legal{font-size:12px;color:var(--blue-grey);line-height:1.7;max-width:900px;}
+  footer .contact-line{margin-top:20px;font-size:13.5px;color:#e7edf2;}
+  footer .contact-line a{color:#fff;font-weight:700;}
+  .foot-bottom{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1);font-size:12.5px;color:var(--blue-grey);}
+
+  @media (max-width:980px){
+    .hero-grid,.platform-grid,.team-grid{grid-template-columns:1fr;}
+    .step-grid{grid-template-columns:1fr;}
+    .benefit-grid{grid-template-columns:1fr 1fr;}
+    .hero-visual .photo-card{height:300px;}
+  }
+  @media (max-width:560px){
+    h1{font-size:30px;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .form-shell{padding:26px;}
+  }
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headbar">
+    <div class="brand"><img src="logo-capital-return.png" alt="Capital Return"></div>
+    <a class="cta-btn" href="#cadastro">Quero ser parceiro</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Programa de Correspondentes</div>
+      <h1>Torne-se um correspondente <span>Capital Return</span> e gere renda com crédito consignado.</h1>
+      <p class="lead">Trabalhe com uma correspondente bancária credenciada, com atuação forte junto ao Banco do Brasil e parceria com múltiplos bancos. Suporte completo, comissionamento transparente e nenhuma taxa de entrada.</p>
+      <a class="btn-primary" href="#cadastro">Quero me cadastrar →</a>
+      <div class="hero-badges">
+        <div class="hero-badge"><span class="ico">✔</span> Sem taxa de adesão</div>
+        <div class="hero-badge"><span class="ico">✔</span> Comissão transparente</div>
+        <div class="hero-badge"><span class="ico">✔</span> Suporte próximo</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo-card">
+        <img src="assets/equipe-escritorio.jpeg" alt="Equipe Capital Return trabalhando no escritório">
+        <div class="cap">
+          <div class="l">Nossa equipe</div>
+          <div class="t">+16 anos ajudando parceiros a crescer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <p>Operamos com os melhores bancos do mercado</p>
+    <div class="bank-row">
+      <span>Banco do Brasil</span><span>Bradesco</span><span>Santander</span><span>Itaú</span>
+      <span>Banco Pan</span><span>Daycoval</span><span>Rodobens</span><span>Banco Âncora</span>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="margin:0 auto 14px;">Como Funciona</div>
+      <h2>Comece a operar em 3 passos simples</h2>
+      <p>Um processo direto, pensado pra você começar a atender clientes o quanto antes.</p>
+    </div>
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="num">1</div>
+        <h3>Cadastro</h3>
+        <p>Preencha o formulário com seus dados. Nossa equipe analisa e entra em contato em até 24h.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">2</div>
+        <h3>Acesso e orientação</h3>
+        <p>Você recebe acesso à plataforma e orientação sobre os produtos, tabelas e processo de simulação.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">3</div>
+        <h3>Comece a atender</h3>
+        <p>Simule, formalize propostas e receba seu comissionamento de forma transparente e recorrente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="margin:0 auto 14px;">O Que Você Ganha</div>
+      <h2>Uma parceria pensada pra quem quer crescer de verdade</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-card"><div class="ico">💰</div><h3>Comissão justa</h3><p>Pagamento transparente por cada operação formalizada.</p></div>
+      <div class="benefit-card"><div class="ico">🏦</div><h3>Multibancos</h3><p>Acesso a Banco do Brasil e diversas outras instituições parceiras.</p></div>
+      <div class="benefit-card"><div class="ico">📈</div><h3>+30 produtos</h3><p>Consignado, cartões, FGTS, consórcio, seguro e mais.</p></div>
+      <div class="benefit-card"><div class="ico">🤝</div><h3>Suporte próximo</h3><p>Atendimento direto com nossa equipe, sem burocracia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform">
+  <div class="wrap platform-grid">
+    <div class="platform-copy">
+      <div class="eyebrow on-dark"><span class="dot"></span> Plataforma Capital Return</div>
+      <h2 style="font-size:29px;font-weight:800;margin:16px 0 16px;">Toda a sua operação em um só lugar</h2>
+      <p>Acompanhe simulações, propostas e comissionamento em uma plataforma feita pra facilitar o seu dia a dia como correspondente.</p>
+      <ul class="platform-perks">
+        <li>Simulação e formalização em um único fluxo</li>
+        <li>Acompanhamento de propostas em tempo real</li>
+        <li>Extrato de comissões sempre disponível</li>
+        <li>Suporte direto pelo WhatsApp</li>
+      </ul>
+    </div>
+    <div class="platform-img">
+      <img src="assets/mockup-plataforma.png" alt="Plataforma Capital Return">
+    </div>
+  </div>
+</section>
+
+<!-- TEAM PROOF -->
+<section class="team">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="margin:0 auto 14px;">Quem Está Por Trás</div>
+      <h2>Um time que entende o mercado de crédito</h2>
+      <p>Presença real, atendimento próximo e experiência de mercado — é isso que sustenta cada parceria.</p>
+    </div>
+    <div class="team-grid">
+      <div class="big" style="height:360px;"><img src="assets/mesa-reuniao.jpeg" alt="Equipe Capital Return em reunião"></div>
+      <div class="small" style="height:360px;"><img src="assets/atendimento-agencia.jpeg" alt="Atendimento Capital Return"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="cadastro">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="margin:0 auto 14px;">Cadastro de Parceiro</div>
+      <h2>Dê o primeiro passo pra acelerar sua operação</h2>
+      <p>Preencha o formulário abaixo. Nossa equipe entra em contato em até 24 horas úteis.</p>
+    </div>
+    <div class="form-shell">
+      <form>
+        <div class="form-row">
+          <div class="field"><label>Nome *</label><input type="text" placeholder="Digite seu nome"></div>
+          <div class="field"><label>E-mail *</label><input type="email" placeholder="Digite seu melhor e-mail"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Celular *</label><input type="tel" placeholder="(11) 99999-9999"></div>
+          <div class="field"><label>CPF *</label><input type="text" placeholder="Digite seu CPF"></div>
+        </div>
+        <div class="field full"><label>Já atua no mercado financeiro?</label>
+          <select>
+            <option>Selecione uma opção</option>
+            <option>Sim, sou correspondente bancário</option>
+            <option>Sim, sou corretor(a) de crédito</option>
+            <option>Não, mas tenho interesse</option>
+          </select>
+        </div>
+        <div class="field full"><label>Cidade / Estado *</label><input type="text" placeholder="Ex: São Paulo / SP"></div>
+        <div class="lgpd">
+          <input type="checkbox">
+          <span>Estou ciente e concordo com o uso destes dados para contato pela Capital Return, em conformidade com a Lei Geral de Proteção de Dados nº 13.709/2018.</span>
+        </div>
+        <button type="button" class="submit-btn">Quero ser parceiro</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- MINIMAL FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand"><img src="logo-capital-return.png" alt="Capital Return"></div>
+    <p class="legal"><b style="color:#fff;">Capital Return</b> é um correspondente bancário, autorizado a exercer as atividades de correspondente no país, em conformidade com as diretrizes legais constantes na Resolução do Conselho Monetário Nacional (CMN) nº 4.935/2021, com a Lei Geral de Proteção de Dados nº 13.709/2018 e demais legislações aplicáveis, encaminhando propostas de crédito e outros produtos para instituições financeiras parceiras, com destaque para o Banco do Brasil S.A. A Capital Return não é uma instituição financeira.</p>
+    <p class="legal" style="margin-top:10px;">*Todas as condições, limites e valores de crédito estão sujeitos a análise e aprovação de crédito pela instituição financeira responsável pela operação.</p>
+    <div class="contact-line">Dúvidas? Fale conosco pelo WhatsApp <a href="https://wa.me/5511993542266" target="_blank" rel="noopener">(11) 99354-2266</a> ou pelo e-mail <a href="mailto:contato@capitalreturn.com.br">contato@capitalreturn.com.br</a></div>
+    <div class="foot-bottom">© 2026 Capital Return. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Return | Correspondente Bancário Autorizado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --red:#C92822;
+    --red-dark:#a71f1a;
+    --navy:#0F2E4A;
+    --blue-mid:#2E5B88;
+    --blue-grey:#93A5B7;
+    --bg:#FFFFFF;
+    --bg-alt:#F5F7FA;
+    --line: rgba(15,46,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--navy);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.eyebrow,.logo-word{
+    font-family:'Montserrat',sans-serif;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* -------- Header -------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .headbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:46px;width:auto;}
+  nav{display:flex;align-items:center;gap:30px;}
+  nav a{
+    font-size:14.5px;font-weight:600;color:var(--navy);
+    letter-spacing:.2px;
+    position:relative;padding:4px 0;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;
+    background:var(--red);transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .cta-btn{
+    background:var(--red);color:#fff;padding:11px 22px;border-radius:8px;
+    font-weight:700;font-size:14.5px;white-space:nowrap;
+    box-shadow:0 6px 16px rgba(201,40,34,0.25);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(201,40,34,0.32);}
+  .menu-toggle{display:none;background:none;border:none;font-size:26px;color:var(--navy);cursor:pointer;}
+
+  /* -------- Ascending line motif (signature element) -------- */
+  .trend-divider{
+    width:100%;height:64px;overflow:hidden;line-height:0;
+  }
+  .trend-divider svg{width:100%;height:100%;display:block;}
+
+  /* -------- Hero -------- */
+  .hero{
+    position:relative;
+    padding:86px 0 60px;
+    background:linear-gradient(180deg,#ffffff 0%, #f8fafb 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--red);
+    border:1px solid rgba(201,40,34,0.25);
+    background:rgba(201,40,34,0.06);
+    padding:7px 16px;border-radius:30px;margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);}
+  h1{
+    font-size:46px;line-height:1.12;font-weight:800;color:var(--navy);
+    margin:0 0 20px;letter-spacing:-.5px;
+  }
+  h1 span{color:var(--red);}
+  .hero p.lead{
+    font-size:17.5px;line-height:1.65;color:var(--blue-mid);max-width:520px;margin:0 0 32px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--red);color:#fff;padding:15px 28px;border-radius:9px;font-weight:700;font-size:15.5px;
+    box-shadow:0 8px 20px rgba(201,40,34,0.28);
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(201,40,34,0.35);}
+  .btn-ghost{
+    border:1.5px solid var(--navy);color:var(--navy);padding:15px 28px;border-radius:9px;font-weight:700;font-size:15.5px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover{background:var(--navy);color:#fff;}
+  .hero-badges{
+    display:flex;gap:26px;margin-top:38px;flex-wrap:wrap;
+  }
+  .hero-badge{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--blue-mid);}
+  .hero-badge .ico{color:var(--red);font-size:18px;}
+
+  .hero-visual{
+    position:relative;height:400px;
+  }
+  .photo-card{
+    position:absolute;inset:0;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(15,46,74,0.28);
+  }
+  .photo-card img{
+    width:100%;height:100%;object-fit:cover;object-position:center 20%;
+    display:block;
+  }
+  .photo-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(15,46,74,0) 45%, rgba(15,46,74,0.85) 100%);
+  }
+  .trust-badge{
+    position:absolute;left:22px;right:22px;bottom:22px;z-index:2;
+  }
+  .trust-badge .label{
+    color:var(--blue-grey);font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  }
+  .trust-badge .figure{
+    color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:32px;margin-top:4px;
+  }
+  .trust-badge .figure small{font-size:14.5px;color:var(--blue-grey);font-weight:600;}
+
+  /* -------- Bank strip -------- */
+  .strip{padding:46px 0;background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;}
+  .strip .eyebrow{margin:0 auto 26px;display:flex;width:fit-content;}
+  .strip-title{text-align:center;font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue-mid);margin-bottom:28px;}
+
+  .marquee{
+    position:relative;width:100%;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image:linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+  .marquee-track{
+    display:flex;align-items:center;gap:60px;width:max-content;
+    animation:marquee-scroll 26s linear infinite;
+  }
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee-scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  .bank-chip{
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;color:var(--navy);
+    opacity:.85;transition:opacity .2s ease, transform .2s ease;
+    white-space:nowrap;flex-shrink:0;
+    display:flex;align-items:center;gap:10px;
+  }
+  .bank-chip img{
+    height:30px;width:30px;object-fit:contain;border-radius:6px;background:#fff;
+    box-shadow:0 2px 6px rgba(15,46,74,0.1);padding:3px;
+  }
+  .bank-chip:hover{opacity:1;transform:translateY(-2px);}
+
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+  }
+
+  /* -------- Section shells -------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin:0 auto 52px;text-align:center;}
+  .section-head.left{margin:0 0 48px;text-align:left;}
+  .section-head h2{font-size:33px;font-weight:800;margin:14px 0 14px;letter-spacing:-.3px;}
+  .section-head p{font-size:16px;color:var(--blue-mid);line-height:1.6;}
+
+  /* -------- Products -------- */
+  .products{background:var(--bg);}
+  .product-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+  }
+  .product-card{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 24px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position:relative;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px rgba(15,46,74,0.12);
+    border-color:transparent;
+  }
+  .product-card .ico{
+    width:46px;height:46px;border-radius:11px;
+    background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;margin-bottom:18px;
+  }
+  .product-card h3{font-size:17px;margin:0 0 8px;font-weight:700;color:var(--navy);}
+  .product-card p{font-size:13.8px;color:var(--blue-mid);line-height:1.55;margin:0;}
+  .product-card.featured{background:var(--navy);border-color:var(--navy);}
+  .product-card.featured h3,.product-card.featured p{color:#fff;}
+  .product-card.featured p{color:var(--blue-grey);}
+  .product-card.featured .ico{background:var(--red);}
+
+  /* -------- Cards carousel (Cartão Consignado / Benefício) -------- */
+  .cards-section{background:var(--bg-alt);overflow:hidden;}
+  .cards-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;}
+  .cards-copy p.support{font-size:15px;color:var(--blue-mid);line-height:1.7;margin:14px 0 0;}
+  .carousel{position:relative;}
+  .carousel-track{position:relative;height:520px;}
+  .card-slide{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    opacity:0;transform:translateX(30px);pointer-events:none;
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .card-slide.active{opacity:1;transform:translateX(0);pointer-events:auto;}
+  .card-photo{
+    width:230px;border-radius:16px;overflow:hidden;margin-bottom:20px;
+    box-shadow:0 24px 46px rgba(15,46,74,0.24);
+  }
+  .card-photo img{width:100%;display:block;}
+  .partner-tag{
+    background:var(--navy);color:#fff;font-size:11px;font-weight:700;
+    padding:5px 14px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .card-limit{font-family:'Montserrat',sans-serif;font-weight:800;font-size:22px;color:var(--navy);margin-bottom:14px;}
+  .card-limit span{color:var(--red);}
+  .card-bullets{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;align-items:center;}
+  .card-bullets li{font-size:13.5px;color:var(--blue-mid);display:flex;gap:8px;align-items:center;}
+  .card-bullets li::before{content:"✓";color:var(--red);font-weight:800;}
+  .card-cta{
+    background:var(--red);color:#fff;padding:13px 26px;border-radius:9px;font-weight:700;font-size:14.5px;
+    box-shadow:0 8px 18px rgba(201,40,34,0.28);
+  }
+  .carousel-arrows{
+    position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;
+    transform:translateY(-50%);pointer-events:none;padding:0 4px;
+  }
+  .car-arrow{
+    pointer-events:auto;width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid var(--line);
+    color:var(--navy);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+    box-shadow:0 6px 14px rgba(15,46,74,0.12);
+  }
+  .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;}
+  .disclaimer-note{text-align:center;font-size:11.5px;color:var(--blue-mid);margin:14px 0 0;}
+  .car-dot{width:8px;height:8px;border-radius:50%;background:var(--blue-grey);opacity:.5;cursor:pointer;transition:opacity .2s ease, width .2s ease;}
+  .car-dot.active{opacity:1;background:var(--red);width:22px;border-radius:5px;}
+
+  @media (max-width:980px){
+    .cards-grid{grid-template-columns:1fr;}
+  }
+  .why{background:var(--bg-alt);}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .why-list{display:flex;flex-direction:column;gap:26px;}
+  .why-item{display:flex;gap:18px;}
+  .why-item .num{
+    font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--red);
+    border:1.5px solid rgba(201,40,34,0.3);width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .why-item h3{margin:0 0 5px;font-size:16.5px;font-weight:700;}
+  .why-item p{margin:0;font-size:14.3px;color:var(--blue-mid);line-height:1.55;}
+  .why-visual{
+    background:var(--navy);border-radius:18px;padding:38px;color:#fff;
+    box-shadow:0 24px 50px rgba(15,46,74,0.22);
+  }
+  .why-visual .quote-mark{font-size:52px;color:var(--red);font-family:Georgia,serif;line-height:.4;margin-bottom:6px;}
+  .why-visual p{font-size:17px;line-height:1.6;color:#eef2f6;margin:0 0 22px;}
+  .why-visual .sign{font-weight:700;font-size:14px;color:var(--blue-grey);}
+
+  /* -------- Partner form -------- */
+  .partner{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+  .partner .section-head p{color:var(--blue-grey);}
+  .partner .section-head h2{color:#fff;}
+  .partner-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:flex-start;}
+  .partner-copy .eyebrow{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);}
+  .partner-copy h2{font-size:30px;font-weight:800;line-height:1.25;margin:16px 0 18px;}
+  .partner-copy p{font-size:15.5px;color:var(--blue-grey);line-height:1.65;margin-bottom:14px;}
+  .partner-perks{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-direction:column;gap:14px;}
+  .partner-perks li{display:flex;gap:10px;font-size:14.5px;color:#e7edf2;}
+  .partner-perks li::before{content:"✓";color:var(--red);font-weight:800;}
+
+  form{
+    background:#fff;border-radius:16px;padding:32px;color:var(--navy);
+    box-shadow:0 30px 60px rgba(0,0,0,0.25);
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{margin-bottom:16px;}
+  .field.full{grid-column:1/-1;}
+  label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--navy);}
+  input,select{
+    width:100%;padding:11px 13px;border:1.5px solid #dfe6ec;border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);background:#fbfcfd;
+    transition:border-color .2s ease;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--blue-mid);}
+  .lgpd{display:flex;gap:9px;font-size:12.3px;color:var(--blue-mid);line-height:1.5;align-items:flex-start;margin:10px 0 18px;}
+  .lgpd input{width:16px;height:16px;margin-top:2px;flex-shrink:0;}
+  .submit-btn{
+    width:100%;background:var(--red);color:#fff;border:none;padding:15px;border-radius:9px;
+    font-weight:700;font-size:15.5px;cursor:pointer;transition:background .2s ease, transform .2s ease;
+  }
+  .submit-btn:hover{background:var(--red-dark);transform:translateY(-1px);}
+
+  /* -------- About -------- */
+  .about{background:var(--bg);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about-copy p{font-size:15.5px;line-height:1.7;color:var(--blue-mid);margin-bottom:16px;}
+  .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px;}
+  .stat{background:var(--bg-alt);border-radius:14px;padding:20px 12px;border:1px solid var(--line);text-align:center;}
+  .stat .n{font-family:'Montserrat',sans-serif;font-weight:800;font-size:23px;color:var(--red);}
+  .stat .l{font-size:11.5px;color:var(--blue-mid);font-weight:600;margin-top:4px;line-height:1.3;}
+  .about-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:20px 0;}
+  .ecosystem{position:relative;width:min(420px, 90vw);aspect-ratio:1/1;}
+  .eco-ring-outer{
+    position:absolute;inset:0;border-radius:50%;background:var(--bg-alt);
+  }
+  .eco-ring-mid{
+    position:absolute;inset:13%;border-radius:50%;background:#eceff2;
+  }
+  .eco-center-circle{
+    position:absolute;inset:29%;border-radius:50%;background:#fff;
+    box-shadow:0 18px 38px rgba(15,46,74,0.16);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .eco-center-circle img{width:62%;}
+  .eco-orbit-ring{position:absolute;inset:0;animation:eco-spin 42s linear infinite;}
+  .eco-node{
+    position:absolute;transform:translate(-50%,-50%);
+  }
+  .eco-node-inner{
+    display:flex;flex-direction:column;align-items:center;gap:7px;
+    animation:eco-counter-spin 42s linear infinite;
+  }
+  .eco-node .badge{
+    width:58px;height:58px;border-radius:50%;background:#fff;
+    box-shadow:0 10px 22px rgba(15,46,74,0.14);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .eco-node .badge img{width:58%;height:58%;object-fit:contain;}
+  .eco-node .tag{
+    font-size:11px;font-weight:700;color:var(--navy);text-align:center;white-space:nowrap;
+  }
+  @keyframes eco-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @keyframes eco-counter-spin{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
+  @media (prefers-reduced-motion: reduce){
+    .eco-orbit-ring, .eco-node-inner{animation:none;}
+  }
+
+  /* -------- Contact / WhatsApp + QR -------- */
+  .contact{background:var(--bg-alt);}
+  .contact-card{
+    background:#fff;border-radius:20px;padding:50px;
+    box-shadow:0 24px 50px rgba(15,46,74,0.1);
+    display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center;
+  }
+  .contact-copy .eyebrow{margin-bottom:18px;}
+  .contact-copy h2{font-size:28px;font-weight:800;margin:0 0 14px;}
+  .contact-copy p{font-size:15.5px;color:var(--blue-mid);line-height:1.65;margin-bottom:26px;}
+  .whatsapp-btn{
+    display:inline-flex;align-items:center;gap:12px;background:var(--navy);color:#fff;
+    padding:16px 26px;border-radius:10px;font-weight:700;font-size:16px;
+    box-shadow:0 10px 24px rgba(15,46,74,0.25);transition:transform .2s ease;
+  }
+  .whatsapp-btn:hover{transform:translateY(-2px);}
+  .whatsapp-btn .num{color:var(--blue-grey);font-weight:600;font-size:13.5px;display:block;}
+  .qr-box{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  #qrcode{
+    background:#fff;padding:8px;border-radius:12px;
+    box-shadow:0 10px 24px rgba(15,46,74,0.12);border:1px solid var(--line);
+  }
+  #qrcode img{border-radius:6px;display:block;}
+  .qr-box .qr-label{font-size:12.5px;font-weight:700;color:var(--navy);text-align:center;}
+  .qr-box .qr-sub{font-size:11.5px;color:var(--blue-mid);text-align:center;}
+
+  /* -------- Footer -------- */
+  footer{background:var(--navy);color:#fff;padding-top:60px;}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+  .foot-brand img{height:38px;filter:brightness(0) invert(1);}
+  .footer p{font-size:13.5px;color:var(--blue-grey);line-height:1.6;}
+  .foot-col h4{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--blue-grey);margin-bottom:16px;}
+  .foot-col a, .foot-col span{display:block;font-size:13.8px;color:#e7edf2;margin-bottom:10px;}
+  .legal{padding:28px 0 34px;font-size:12px;color:var(--blue-grey);line-height:1.7;}
+  .legal b{color:#e7edf2;}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);padding:18px 0;
+    display:flex;justify-content:space-between;font-size:12.5px;color:var(--blue-grey);flex-wrap:wrap;gap:10px;
+  }
+
+  /* -------- Responsive -------- */
+  @media (max-width:980px){
+    .hero-grid,.why-grid,.about-grid,.partner-grid{grid-template-columns:1fr;}
+    .hero-visual{height:280px;margin-top:10px;}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-card{grid-template-columns:1fr;padding:34px;}
+    .foot-top{grid-template-columns:1fr;gap:30px;}
+    nav{display:none;}
+    .menu-toggle{display:block;}
+  }
+  @media (max-width:760px){
+    .stat-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (max-width:560px){
+    h1{font-size:32px;}
+    .product-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headbar">
+    <div class="brand">
+      <img src="logo-capital-return.png" alt="Capital Return">
+    </div>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#parceiro">Seja Parceiro</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="cta-btn" href="https://wa.me/5511993542266" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    <button class="menu-toggle" aria-label="menu">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Correspondente Bancário Autorizado</div>
+      <h1>Crédito com <span>segurança</span>, agilidade e a força dos maiores bancos do país.</h1>
+      <p class="lead">A Capital Return é correspondente bancário credenciado, com atuação forte junto ao Banco do Brasil e parceria com múltiplos bancos. Simulação rápida, atendimento humano e aprovação sem burocracia.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/5511993542266" target="_blank" rel="noopener">Simular pelo WhatsApp →</a>
+        <a class="btn-ghost" href="#produtos">Ver produtos</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><span class="ico">✔</span> Credenciamento oficial</div>
+        <div class="hero-badge"><span class="ico">✔</span> Atendimento direto</div>
+        <div class="hero-badge"><span class="ico">✔</span> Sem burocracia</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo-card">
+        <img src="assets/equipe-bb.jpeg" alt="Equipe Capital Return em agência do Banco do Brasil">
+        <div class="trust-badge">
+          <div class="label">Retorno para o seu bolso</div>
+          <div class="figure">+90% <small>das operações via Banco do Brasil</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREND DIVIDER -->
+<div class="trend-divider">
+  <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+    <polyline points="0,50 150,40 300,45 450,25 600,32 750,10 900,18 1050,4 1200,12" fill="none" stroke="#93A5B7" stroke-width="1.5" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- BANK STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-title">Conectados com os melhores</div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bb.com.br" alt="" loading="lazy">Banco do Brasil</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bradesco.com.br" alt="" loading="lazy">Bradesco</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/santander.com.br" alt="" loading="lazy">Santander</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/itau.com.br" alt="" loading="lazy">Itaú</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bancopan.com.br" alt="" loading="lazy">Banco Pan</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/daycoval.com.br" alt="" loading="lazy">Daycoval</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/c6bank.com.br" alt="" loading="lazy">C6 Bank</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/brb.com.br" alt="" loading="lazy">BRB</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/safra.com.br" alt="" loading="lazy">Banco Safra</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bv.com.br" alt="" loading="lazy">BV</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bancoancora.com.br" alt="" loading="lazy">Banco Âncora</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/rodobens.com.br" alt="" loading="lazy">Rodobens</span>
+      <!-- duplicate set for seamless loop -->
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bb.com.br" alt="" loading="lazy">Banco do Brasil</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bradesco.com.br" alt="" loading="lazy">Bradesco</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/santander.com.br" alt="" loading="lazy">Santander</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/itau.com.br" alt="" loading="lazy">Itaú</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bancopan.com.br" alt="" loading="lazy">Banco Pan</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/daycoval.com.br" alt="" loading="lazy">Daycoval</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/c6bank.com.br" alt="" loading="lazy">C6 Bank</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/brb.com.br" alt="" loading="lazy">BRB</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/safra.com.br" alt="" loading="lazy">Banco Safra</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bv.com.br" alt="" loading="lazy">BV</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/bancoancora.com.br" alt="" loading="lazy">Banco Âncora</span>
+      <span class="bank-chip"><img src="https://logo.clearbit.com/rodobens.com.br" alt="" loading="lazy">Rodobens</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="produtos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="margin:0 auto 14px;">Nossos Produtos</div>
+      <h2>Uma solução de crédito para cada momento da sua vida</h2>
+      <p>Trabalhamos com carteira completa de produtos financeiros, sempre pelas melhores taxas disponíveis entre os bancos parceiros.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card featured">
+        <div class="ico">💳</div>
+        <h3>Crédito Consignado</h3>
+        <p>Para INSS, CLT e Servidor Público. Parcelas fixas descontadas direto na folha ou benefício.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">🎫</div>
+        <h3>Cartão Benefício</h3>
+        <p>Cartão com desconto em folha para aposentados e pensionistas do INSS, sem mensalidade.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">💠</div>
+        <h3>Cartão Consignado</h3>
+        <p>Limite liberado com desconto automático, ideal para uso contínuo com juros reduzidos.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">🏠</div>
+        <h3>Empréstimo com Garantia de Imóvel</h3>
+        <p>Valores mais altos e parcelas menores, usando seu imóvel como garantia da operação.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">📄</div>
+        <h3>FGTS</h3>
+        <p>Antecipação do saque-aniversário do FGTS, com dinheiro na conta em poucos dias.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">🔑</div>
+        <h3>Consórcio</h3>
+        <p>Planeje a conquista do seu imóvel ou veículo com parcelas que cabem no bolso.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">🛡️</div>
+        <h3>Seguro de Vida</h3>
+        <p>Proteção para você e sua família, com coberturas sob medida para cada perfil.</p>
+      </div>
+      <div class="product-card featured">
+        <div class="ico">💬</div>
+        <h3>Simulação Gratuita</h3>
+        <p>Fale com um especialista agora mesmo e descubra a melhor condição para o seu perfil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS CAROUSEL: Cartão Consignado / Cartão Benefício -->
+<section class="cards-section">
+  <div class="wrap cards-grid">
+    <div class="cards-copy">
+      <div class="eyebrow">Ainda tem margem disponível?</div>
+      <h2 style="font-size:29px;font-weight:800;line-height:1.28;margin:0 0 6px;">Não tem mais margem no consignado? Você ainda pode ter direito a mais crédito.</h2>
+      <p class="support">O cartão consignado e o cartão benefício usam uma margem separada da do empréstimo tradicional — a de saque e a de compras. Ou seja: mesmo quem já comprometeu o consignado comum ainda pode ter limite disponível nessa modalidade, operada através de instituições parceiras como BMG e Daycoval (Amigoz).</p>
+    </div>
+    <div class="carousel">
+      <div class="carousel-track" id="cardTrack">
+        <div class="card-slide active" data-slide="0">
+          <div class="partner-tag">Parceria BMG</div>
+          <div class="card-photo"><img src="assets/cartao-bmg.jpeg" alt="Cartão Consignado BMG - Limite de até R$30 mil"></div>
+          <ul class="card-bullets">
+            <li>Desconto direto na folha</li>
+            <li>Sem consulta ao SPC/Serasa</li>
+            <li>Aprovação rápida</li>
+          </ul>
+          <a class="card-cta" href="https://wa.me/5511993542266" target="_blank" rel="noopener">Consultar minha margem</a>
+        </div>
+        <div class="card-slide" data-slide="1">
+          <div class="partner-tag">Parceria Daycoval · Amigoz</div>
+          <div class="card-photo"><img src="assets/cartao-amigoz.jpeg" alt="Cartão Benefício Amigoz Daycoval"></div>
+          <div class="card-limit">Limite de até <span>R$30 mil*</span></div>
+          <ul class="card-bullets">
+            <li>Sem mensalidade</li>
+            <li>Desconto direto no benefício</li>
+            <li>Uso em qualquer lugar</li>
+          </ul>
+          <a class="card-cta" href="https://wa.me/5511993542266" target="_blank" rel="noopener">Consultar minha margem</a>
+        </div>
+      </div>
+      <div class="carousel-arrows">
+        <div class="car-arrow" id="carPrev">‹</div>
+        <div class="car-arrow" id="carNext">›</div>
+      </div>
+      <div class="carousel-dots" id="carDots">
+        <div class="car-dot active" data-dot="0"></div>
+        <div class="car-dot" data-dot="1"></div>
+      </div>
+      <p class="disclaimer-note">*Sujeito a aprovação de crédito.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="wrap why-grid">
+    <div>
+      <div class="section-head left">
+        <div class="eyebrow">Por que a Capital Return</div>
+        <h2>Confiança de banco grande, atendimento de perto</h2>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="num">1</div>
+          <div><h3>Credenciamento oficial</h3><p>Correspondente bancário autorizado, atuando dentro das normas do Conselho Monetário Nacional e da LGPD.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">2</div>
+          <div><h3>Força do Banco do Brasil</h3><p>Mais de 90% das nossas operações são realizadas em parceria direta com o Banco do Brasil.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">3</div>
+          <div><h3>Multibancos</h3><p>Comparamos condições entre diversas instituições para te entregar a melhor taxa disponível.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="num">4</div>
+          <div><h3>Atendimento direto</h3><p>Sem call center. Você fala direto com quem cuida da sua proposta, do início ao fim.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="quote-mark">"</div>
+      <p>Nosso compromisso é simples: entregar o crédito certo, com a instituição certa, sem burocracia e sem letras miúdas.</p>
+      <div class="sign">Equipe Capital Return</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER FORM -->
+<section class="partner" id="parceiro">
+  <div class="wrap partner-grid">
+    <div class="partner-copy">
+      <div class="eyebrow">Seja um Parceiro</div>
+      <h2>Quer se tornar um correspondente ou parceiro comercial?</h2>
+      <p>Se você atua no mercado financeiro e quer ampliar sua carteira de produtos com o suporte de uma correspondente credenciada, preencha o formulário ao lado.</p>
+      <ul class="partner-perks">
+        <li>Suporte completo na formalização das propostas</li>
+        <li>Acesso a múltiplos bancos parceiros</li>
+        <li>Comissionamento transparente</li>
+        <li>Atendimento próximo e sem burocracia</li>
+      </ul>
+    </div>
+    <form>
+      <div class="form-row">
+        <div class="field"><label>Nome *</label><input type="text" placeholder="Digite seu nome"></div>
+        <div class="field"><label>E-mail *</label><input type="email" placeholder="Digite seu melhor e-mail"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Celular *</label><input type="tel" placeholder="(11) 99999-9999"></div>
+        <div class="field"><label>CPF *</label><input type="text" placeholder="Digite seu CPF"></div>
+      </div>
+      <div class="field full"><label>Segmento de atuação *</label>
+        <select>
+          <option>Selecione o segmento</option>
+          <option>Correspondente bancário</option>
+          <option>Corretor de crédito</option>
+          <option>Corretor de seguros</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field full"><label>Motivo do contato *</label>
+        <select>
+          <option>Selecione o motivo</option>
+          <option>Quero ser parceiro</option>
+          <option>Quero simular um crédito</option>
+          <option>Dúvidas gerais</option>
+        </select>
+      </div>
+      <div class="lgpd">
+        <input type="checkbox">
+        <span>Estou ciente e concordo com o uso destes dados para contato pela Capital Return, em conformidade com a Lei Geral de Proteção de Dados nº 13.709/2018.</span>
+      </div>
+      <button type="button" class="submit-btn">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-visual">
+      <div class="ecosystem">
+        <div class="eco-ring-outer"></div>
+        <div class="eco-ring-mid"></div>
+        <div class="eco-center-circle"><img src="logo-capital-return.png" alt="Capital Return"></div>
+
+        <div class="eco-orbit-ring">
+          <div class="eco-node" style="left:50%;top:6%;">
+            <div class="eco-node-inner">
+              <div class="badge"><img src="https://logo.clearbit.com/bb.com.br" alt="Banco do Brasil"></div>
+              <span class="tag">Consignado INSS/CLT</span>
+            </div>
+          </div>
+          <div class="eco-node" style="left:88.1%;top:28%;">
+            <div class="eco-node-inner">
+              <div class="badge"><img src="https://logo.clearbit.com/bmg.com.br" alt="BMG"></div>
+              <span class="tag">Cartão Consignado</span>
+            </div>
+          </div>
+          <div class="eco-node" style="left:88.1%;top:72%;">
+            <div class="eco-node-inner">
+              <div class="badge"><img src="https://logo.clearbit.com/c6bank.com.br" alt="C6 Bank"></div>
+              <span class="tag">Garantia de Imóvel</span>
+            </div>
+          </div>
+          <div class="eco-node" style="left:50%;top:94%;">
+            <div class="eco-node-inner">
+              <div class="badge"><img src="https://logo.clearbit.com/santander.com.br" alt="Santander"></div>
+              <span class="tag">Multibancos</span>
+            </div>
+          </div>
+          <div class="eco-node" style="left:11.9%;top:72%;">
+            <div class="eco-node-inner">
+              <div class="badge"><img src="https://logo.clearbit.com/daycoval.com.br" alt="Daycoval"></div>
+              <span class="tag">Cartão Benefício</span>
+            </div>
+          </div>
+          <div class="eco-node" style="left:11.9%;top:28%;">
+            <div class="eco-node-inner">
+              <div class="badge"><img src="https://logo.clearbit.com/bancopan.com.br" alt="Banco Pan"></div>
+              <span class="tag">FGTS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <div class="eyebrow">Sobre Nós</div>
+      <h2>Correspondente bancário credenciado, com foco em resultado</h2>
+      <p>A Capital Return atua como correspondente bancário autorizado, conectando pessoas físicas às melhores condições de crédito do mercado, com forte atuação junto ao Banco do Brasil e uma rede ampla de bancos parceiros.</p>
+      <p>Trabalhamos em conformidade com a Resolução CMN nº 4.935/2021 e com a Lei Geral de Proteção de Dados, oferecendo segurança jurídica e transparência em cada etapa do processo.</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="n">90%</div><div class="l">Operações via Banco do Brasil</div></div>
+        <div class="stat"><div class="n">+18M</div><div class="l">Já liberados em crédito</div></div>
+        <div class="stat"><div class="n">+30</div><div class="l">Produtos financeiros</div></div>
+        <div class="stat"><div class="n">+16</div><div class="l">Anos de experiência</div></div>
+        <div class="stat"><div class="n">+1M</div><div class="l">Clientes atendidos</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / QR -->
+<section class="contact" id="contato">
+  <div class="wrap">
+    <div class="contact-card">
+      <div class="contact-copy">
+        <div class="eyebrow">Fale Conosco</div>
+        <h2>Simule seu crédito em poucos minutos</h2>
+        <p>Fale agora com nossa equipe pelo WhatsApp e receba uma simulação personalizada, sem compromisso.</p>
+        <a class="whatsapp-btn" href="https://wa.me/5511993542266" target="_blank" rel="noopener">
+          💬 Chamar no WhatsApp
+          <span class="num">(11) 99354-2266</span>
+        </a>
+      </div>
+      <div class="qr-box">
+        <div id="qrcode"></div>
+        <div class="qr-label">Aponte a câmera do celular</div>
+        <div class="qr-sub">e fale com a gente em segundos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-top">
+    <div>
+      <div class="foot-brand"><img src="logo-capital-return.png" alt="Capital Return"></div>
+      <p>Correspondente bancário autorizado, conectando você às melhores condições de crédito do mercado financeiro nacional.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navegação</h4>
+      <a href="#produtos">Produtos</a>
+      <a href="#parceiro">Seja Parceiro</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contato</h4>
+      <span>(11) 99354-2266</span>
+      <a href="https://wa.me/5511993542266" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:contato@capitalreturn.com.br">contato@capitalreturn.com.br</a>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p><b>Capital Return</b> é um correspondente bancário, autorizado a exercer as atividades de correspondente no país, em conformidade com as diretrizes legais constantes na Resolução do Conselho Monetário Nacional (CMN) nº 4.935/2021, com a Lei Geral de Proteção de Dados nº 13.709/2018 e demais legislações aplicáveis, encaminhando propostas de crédito e outros produtos para instituições financeiras parceiras, com destaque para o Banco do Brasil S.A.</p>
+    <p style="margin-top:10px;">A Capital Return não é uma instituição financeira e não realiza cobrança direta de tarifas bancárias.</p>
+    <p style="margin-top:10px;">*Todas as condições, limites e valores de crédito apresentados neste site estão sujeitos a análise e aprovação de crédito pela instituição financeira responsável pela operação.</p>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Capital Return. Todos os direitos reservados.</span>
+    <span>Política de Privacidade · Termos de Uso</span>
+  </div>
+</footer>
+
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://wa.me/5511993542266",
+    width: 104,
+    height: 104,
+    colorDark: "#0F2E4A",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  // Card carousel: Cartão Consignado / Cartão Benefício
+  (function(){
+    const slides = document.querySelectorAll('#cardTrack .card-slide');
+    const dots = document.querySelectorAll('#carDots .car-dot');
+    let current = 0;
+    let timer;
+
+    function goTo(index){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function next(){ goTo(current + 1); }
+    function prev(){ goTo(current - 1); }
+    function startAutoplay(){ timer = setInterval(next, 5000); }
+    function stopAutoplay(){ clearInterval(timer); }
+
+    document.getElementById('carNext').addEventListener('click', ()=>{ next(); stopAutoplay(); startAutoplay(); });
+    document.getElementById('carPrev').addEventListener('click', ()=>{ prev(); stopAutoplay(); startAutoplay(); });
+    dots.forEach((dot, i)=>{
+      dot.addEventListener('click', ()=>{ goTo(i); stopAutoplay(); startAutoplay(); });
+    });
+
+    if(slides.length > 1){ startAutoplay(); }
+  })();
+</script>
+
+</body>
+</html>
