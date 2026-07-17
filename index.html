@@ -160,8 +160,8 @@
     mask-image:linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
   }
   .marquee-track{
-    display:flex;align-items:center;gap:60px;width:max-content;
-    animation:marquee-scroll 26s linear infinite;
+    display:flex;align-items:center;gap:72px;width:max-content;
+    animation:marquee-scroll 34s linear infinite;
   }
   .marquee:hover .marquee-track{animation-play-state:paused;}
   @keyframes marquee-scroll{
@@ -170,17 +170,10 @@
   }
   .bank-chip{
     display:flex;align-items:center;white-space:nowrap;flex-shrink:0;
-    animation:chip-blink 3s ease-in-out infinite;
+    opacity:.9;transition:opacity .2s ease;
   }
-  .bank-chip:nth-child(2n){animation-delay:.5s;}
-  .bank-chip:nth-child(3n){animation-delay:1s;}
-  .bank-chip:nth-child(4n){animation-delay:1.5s;}
-  .bank-chip img{height:42px;width:auto;max-width:150px;object-fit:contain;}
-  .bank-chip:hover{opacity:1 !important;transform:translateY(-2px);}
-  @keyframes chip-blink{
-    0%,100%{opacity:.5;}
-    50%{opacity:1;}
-  }
+  .bank-chip img{height:40px;width:auto;max-width:150px;object-fit:contain;}
+  .bank-chip:hover{opacity:1;}
 
   @media (prefers-reduced-motion: reduce){
     .marquee-track{animation:none;}
