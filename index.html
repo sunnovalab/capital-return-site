@@ -227,18 +227,22 @@
   .cards-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;}
   .cards-copy p.support{font-size:15px;color:var(--blue-mid);line-height:1.7;margin:14px 0 0;}
   .carousel{position:relative;}
-  .carousel-track{position:relative;height:520px;}
+  .carousel-track{position:relative;height:580px;}
   .card-slide{
     position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
     opacity:0;transform:translateX(30px);pointer-events:none;
     transition:opacity .5s ease, transform .5s ease;
   }
   .card-slide.active{opacity:1;transform:translateX(0);pointer-events:auto;}
-  .card-photo{
-    width:230px;border-radius:16px;overflow:hidden;margin-bottom:20px;
-    box-shadow:0 24px 46px rgba(15,46,74,0.24);
+  .card-photo{width:230px;margin-bottom:20px;}
+  .card-photo img{
+    width:100%;display:block;filter:drop-shadow(0 20px 34px rgba(15,46,74,0.28));
+    animation:card-blink 3s ease-in-out infinite;
   }
-  .card-photo img{width:100%;display:block;}
+  @keyframes card-blink{
+    0%,100%{opacity:.55;}
+    50%{opacity:1;}
+  }
   .card-limit{font-family:'Montserrat',sans-serif;font-weight:800;font-size:22px;color:var(--navy);margin-bottom:14px;}
   .card-limit span{color:var(--red);}
   .card-bullets{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;align-items:center;}
@@ -351,9 +355,9 @@
   .eco-node .badge{
     width:58px;height:58px;border-radius:50%;background:#fff;
     box-shadow:0 10px 22px rgba(15,46,74,0.14);
-    display:flex;align-items:center;justify-content:center;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
   }
-  .eco-node .badge img{width:58%;height:58%;object-fit:contain;}
+  .eco-node .badge img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
   .eco-node .tag{
     font-size:11px;font-weight:700;color:var(--navy);text-align:center;white-space:nowrap;
   }
@@ -498,8 +502,8 @@
       <span class="bank-chip"><img src="assets/logo-santander.png" alt="Santander" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-itau.png" alt="Itaú" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-bancopan.png" alt="Banco Pan" loading="lazy"></span>
-      <span class="bank-chip"><img src="assets/logo-daycoval.png" alt="Daycoval" loading="lazy"></span>
-      <span class="bank-chip"><img src="assets/logo-c6bank.png" alt="C6 Bank" loading="lazy"></span>
+      <span class="bank-chip"><img src="assets/logo-daycoval-square.png" alt="Daycoval" loading="lazy"></span>
+      <span class="bank-chip"><img src="assets/logo-c6bank-square.png" alt="C6 Bank" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-brb.png" alt="BRB" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-safra.png" alt="Banco Safra" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-bv.png" alt="BV" loading="lazy"></span>
@@ -511,8 +515,8 @@
       <span class="bank-chip"><img src="assets/logo-santander.png" alt="Santander" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-itau.png" alt="Itaú" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-bancopan.png" alt="Banco Pan" loading="lazy"></span>
-      <span class="bank-chip"><img src="assets/logo-daycoval.png" alt="Daycoval" loading="lazy"></span>
-      <span class="bank-chip"><img src="assets/logo-c6bank.png" alt="C6 Bank" loading="lazy"></span>
+      <span class="bank-chip"><img src="assets/logo-daycoval-square.png" alt="Daycoval" loading="lazy"></span>
+      <span class="bank-chip"><img src="assets/logo-c6bank-square.png" alt="C6 Bank" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-brb.png" alt="BRB" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-safra.png" alt="Banco Safra" loading="lazy"></span>
       <span class="bank-chip"><img src="assets/logo-bv.png" alt="BV" loading="lazy"></span>
@@ -771,7 +775,7 @@
           </div>
           <div class="eco-node" style="left:88.1%;top:72%;">
             <div class="eco-node-inner">
-              <div class="badge"><img src="assets/logo-c6bank.png" alt="C6 Bank"></div>
+              <div class="badge"><img src="assets/logo-c6bank-square.png" alt="C6 Bank"></div>
               <span class="tag">Garantia de Imóvel</span>
             </div>
           </div>
@@ -783,7 +787,7 @@
           </div>
           <div class="eco-node" style="left:11.9%;top:72%;">
             <div class="eco-node-inner">
-              <div class="badge"><img src="assets/logo-daycoval.png" alt="Daycoval"></div>
+              <div class="badge"><img src="assets/logo-daycoval-square.png" alt="Daycoval"></div>
               <span class="tag">Cartão Benefício</span>
             </div>
           </div>
