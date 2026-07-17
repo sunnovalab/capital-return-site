@@ -407,6 +407,13 @@
     .foot-top{grid-template-columns:1fr;gap:30px;}
     nav{display:none;}
     .menu-toggle{display:block;}
+    nav.nav-open{
+      display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;
+      background:#fff;border-top:1px solid var(--line);box-shadow:0 16px 24px rgba(15,46,74,0.12);
+      padding:8px 0;
+    }
+    nav.nav-open a{padding:14px 24px;border-bottom:1px solid var(--line);width:100%;}
+    header{position:relative;}
   }
   @media (max-width:760px){
     .stat-grid{grid-template-columns:repeat(3,1fr);}
@@ -752,37 +759,31 @@
           <div class="eco-node" style="left:50%;top:6%;">
             <div class="eco-node-inner">
               <div class="badge"><img src="assets/logo-bb-v2.png" alt="Banco do Brasil"></div>
-              <span class="tag">Consignado INSS/CLT</span>
             </div>
           </div>
           <div class="eco-node" style="left:88.1%;top:28%;">
             <div class="eco-node-inner">
-              <div class="badge"><img src="assets/logo-bmg.png" alt="BMG"></div>
-              <span class="tag">Cartão Consignado</span>
+              <div class="badge"><img src="assets/logo-bmg-v2.png" alt="BMG"></div>
             </div>
           </div>
           <div class="eco-node" style="left:88.1%;top:72%;">
             <div class="eco-node-inner">
-              <div class="badge"><img src="assets/logo-c6bank.png" alt="C6 Bank"></div>
-              <span class="tag">Garantia de Imóvel</span>
+              <div class="badge"><img src="assets/logo-c6bank-v2.png" alt="C6 Bank"></div>
             </div>
           </div>
           <div class="eco-node" style="left:50%;top:94%;">
             <div class="eco-node-inner">
               <div class="badge"><img src="assets/logo-santander-v2.png" alt="Santander"></div>
-              <span class="tag">Multibancos</span>
             </div>
           </div>
           <div class="eco-node" style="left:11.9%;top:72%;">
             <div class="eco-node-inner">
               <div class="badge"><img src="assets/logo-daycoval-v2.png" alt="Daycoval"></div>
-              <span class="tag">Cartão Benefício</span>
             </div>
           </div>
           <div class="eco-node" style="left:11.9%;top:28%;">
             <div class="eco-node-inner">
-              <div class="badge"><img src="assets/logo-bancopan.png" alt="Banco Pan"></div>
-              <span class="tag">FGTS</span>
+              <div class="badge"><img src="assets/logo-bancopan-v2.png" alt="Banco Pan"></div>
             </div>
           </div>
         </div>
@@ -867,6 +868,22 @@
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
   });
+
+  // Mobile menu toggle
+  (function(){
+    var toggle = document.querySelector('.menu-toggle');
+    var nav = document.querySelector('header nav');
+    if(toggle && nav){
+      toggle.addEventListener('click', function(){
+        nav.classList.toggle('nav-open');
+      });
+      nav.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', function(){
+          nav.classList.remove('nav-open');
+        });
+      });
+    }
+  })();
 
   // Card carousel: Cartão Consignado / Cartão Benefício
   (function(){
